@@ -1,0 +1,369 @@
+{
+  "info": {
+    "_postman_id": "2cf4b787-0527-41b8-acb4-389213df9851",
+    "name": "Northwind REST API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "881012"
+  },
+  "item": [
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "Get All Products",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{northwind}}/api/products",
+              "host": [
+                "{{northwind}}"
+              ],
+              "path": [
+                "api",
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get One Product",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{northwind}}/api/products/1",
+              "host": [
+                "{{northwind}}"
+              ],
+              "path": [
+                "api",
+                "products",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add Product",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Apple2",
+                  "type": "text",
+                  "uuid": "7526b5a0-5c05-4c89-94aa-80324b2505e6"
+                },
+                {
+                  "key": "price",
+                  "value": "3.5",
+                  "type": "text",
+                  "uuid": "1e3c922d-9ae7-436f-9441-aea6d19b630f"
+                },
+                {
+                  "key": "stock",
+                  "value": "100",
+                  "type": "text",
+                  "uuid": "462369c8-7b86-4d77-99e1-824c5e513521"
+                },
+                {
+                  "key": "image",
+                  "type": "file",
+                  "uuid": "c8897dea-9bb5-40e2-b0de-fd977e369ff4",
+                  "src": "/C:/Users/User/Desktop/apple.jpg"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{northwind}}/api/products",
+              "host": [
+                "{{northwind}}"
+              ],
+              "path": [
+                "api",
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Product",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Mix Apple",
+                  "type": "text",
+                  "uuid": "27432b06-2686-4b36-9d3b-50a68c02db53"
+                },
+                {
+                  "key": "price",
+                  "value": "4.2",
+                  "type": "text",
+                  "uuid": "5feaed83-5bfb-4000-ae67-9758b06b36da"
+                },
+                {
+                  "key": "stock",
+                  "value": "70",
+                  "type": "text",
+                  "uuid": "835fd522-60f5-4771-9415-c2438eee3eac"
+                },
+                {
+                  "key": "image",
+                  "type": "file",
+                  "uuid": "fb4f9ba0-cefa-4301-b27d-f3e946d9593e",
+                  "src": "/C:/Users/User/Desktop/mix-apple.jpg"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{northwind}}/api/products/90",
+              "host": [
+                "{{northwind}}"
+              ],
+              "path": [
+                "api",
+                "products",
+                "90"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Product",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "{{northwind}}/api/products/90",
+              "host": [
+                "{{northwind}}"
+              ],
+              "path": [
+                "api",
+                "products",
+                "90"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Products by Price",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{northwind}}/api/products-by-price/10/20",
+              "host": [
+                "{{northwind}}"
+              ],
+              "path": [
+                "api",
+                "products-by-price",
+                "10",
+                "20"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Image",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{northwind}}/api/products/images/f0a93f8e-ee46-4b39-8d65-a0c36e07e37a.jpg",
+              "host": [
+                "{{northwind}}"
+              ],
+              "path": [
+                "api",
+                "products",
+                "images",
+                "f0a93f8e-ee46-4b39-8d65-a0c36e07e37a.jpg"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Register",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const token = pm.response.json();\r",
+                  "pm.collectionVariables.set(\"token\", token);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"firstName\": \"Marge\",\r\n    \"lastName\": \"Simpson\",\r\n    \"email\": \"marge.simpson@gmail.com\",\r\n    \"password\": \"123456\",\r\n    \"roleId\": 1\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{northwind}}/api/register",
+              "host": [
+                "{{northwind}}"
+              ],
+              "path": [
+                "api",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const token = pm.response.json();\r",
+                  "pm.collectionVariables.set(\"token\", token);\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"bart.simpson@gmail.com\",\r\n    \"password\": \"123456\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{northwind}}/api/login",
+              "host": [
+                "{{northwind}}"
+              ],
+              "path": [
+                "api",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "token",
+      "value": ""
+    }
+  ]
+}
