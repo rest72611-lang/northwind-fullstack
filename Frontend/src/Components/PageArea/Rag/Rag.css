@@ -1,0 +1,12 @@
+.Rag {
+    font-size: 20px;
+}
+
+.Rag > input {
+	width: 500px;
+    font-size: 20px;
+}
+
+.Rag > button {
+    font-size: 20px;
+}
