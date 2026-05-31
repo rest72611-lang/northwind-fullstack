@@ -16,7 +16,7 @@ class OrderService {
     }
 
     public async getAllOrderDetails(): Promise<object[]> {
-        const sql = "select * from orderDetails";
+        const sql = "select * from `order-details`";
         const orderDetails = await dal.execute(sql) as object[];
         return orderDetails;
     }
