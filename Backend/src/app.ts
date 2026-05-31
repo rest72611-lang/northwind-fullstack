@@ -5,6 +5,7 @@ import expressFileUpload from "express-fileupload"
 import { fileSaver } from "uploaded-file-saver";
 import path from "path";
 import { userController } from "./5-controllers/user-controller";
+import { ragController } from "./5-controllers/rag-controller";
 import cors from "cors";
 import { cyber } from "./2-utils/cyber";
 import { securityMiddleware } from "./6-middleware/security-middleware";
@@ -43,6 +44,7 @@ class App {
         // Connect controllers: 
         server.use(productController.router);
         server.use(userController.router);
+        server.use(ragController.router);
 
         // Register error middleware:
         server.use(errorMiddleware.routeNotFound);

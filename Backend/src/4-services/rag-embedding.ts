@@ -13,6 +13,11 @@ class RagEmbedding {
     public async embed(): Promise<void> {
         try {
 
+            if (!appConfig.openaiApiKey) {
+                console.warn("Skipping RAG embedding: OPENAI_API_KEY is not configured on the backend.");
+                return;
+            }
+
             // RAG Settings:
             Settings.embedModel = new OpenAIEmbedding({ apiKey: appConfig.openaiApiKey });
             Settings.chunkSize = 300; // Default = 1024 tokens

@@ -1,5 +1,6 @@
-import express, { Request, Response, Router } from "express";
+import express, { NextFunction, Request, Response, Router } from "express";
 import { ragRetrieval } from "../4-services/rag-retrieval";
+import { ValidationError } from "../3-models/errors";
 
 class RagController {
 
@@ -12,10 +13,17 @@ class RagController {
     }
 
     // Register new user: 
-    private async retrieve(request: Request, response: Response) {
-        const question = request.body.question;
-        const chunks = await ragRetrieval.retrieve(question);
-        response.send(chunks);
+    private async retrieve(request: Request, response: Response, next: NextFunction) {
+        try {
+            const question = request.body.question;
+            if (!question) throw new ValidationError("Question is required.");
+
+            const chunks = await ragRetrieval.retrieve(question);
+            response.send(chunks);
+        }
+        catch (err: any) {
+            next(err);
+        }
     }
 
 }

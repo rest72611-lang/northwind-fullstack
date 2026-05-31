@@ -24,6 +24,7 @@ export function Rag() {
         }
         catch (err: any) {
             notify.error(err);
+            setAnswer("Sorry, the knowledge-base answer is unavailable right now.");
             setFetching(false);
         }
     }

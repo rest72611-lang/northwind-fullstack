@@ -1,11 +1,16 @@
 import { OpenAIEmbedding } from "@llamaindex/openai";
 import { Settings, storageContextFromDefaults, TextNode, VectorStoreIndex } from "llamaindex";
 import { appConfig } from "../2-utils/app-config";
+import { ValidationError } from "../3-models/errors";
 import path from "path";
 
 class RagRetrieval {
 
     public async retrieve(question: string): Promise<string> {
+
+        if (!appConfig.openaiApiKey) {
+            throw new ValidationError("OPENAI_API_KEY is not configured on the backend.");
+        }
 
         // RAG Settings:
         Settings.embedModel = new OpenAIEmbedding({ apiKey: appConfig.openaiApiKey });
