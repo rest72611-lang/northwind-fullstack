@@ -45,7 +45,7 @@ class AppConfig {
             .map(([name]) => name);
 
         if (missingVariables.length > 0) {
-            throw new Error(`Missing MySQL environment variables (${missingVariables.join(", ")}). Create Backend/.env from Backend/.env.example`);
+            throw new Error(`Missing MySQL environment variables (${missingVariables.join(", ")}). Create Backend/.env from Backend/.env.example. Do not edit only .env.example.`);
         }
     }
 
