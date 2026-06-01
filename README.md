@@ -50,7 +50,8 @@ docker compose up -d
 
 ### 2. Configure the backend
 
-Create `Backend/.env` from `Backend/.env.example` and keep it local. Do not commit real secrets.
+Copy `Backend/.env.example` to `Backend/.env` and keep it local. Do not commit real secrets.
+When using the Docker Compose MySQL service, the local backend environment should use `MYSQL_USER=northwind_user` and `MYSQL_PASSWORD=northwind_password`.
 
 Required database variables are read by `Backend/src/2-utils/dal.ts` through `Backend/src/2-utils/app-config.ts`:
 
@@ -69,6 +70,8 @@ cd Backend
 npm install
 npm start
 ```
+
+Start the backend from the `Backend` folder so local tooling resolves paths consistently.
 
 ### 4. Run the frontend
 

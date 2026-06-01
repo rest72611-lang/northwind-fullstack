@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { appConfig } from "./2-utils/app-config";
 import { productController } from "./5-controllers/product-controller";
 import { errorMiddleware } from "./6-middleware/error-middleware";
@@ -6,6 +7,7 @@ import { fileSaver } from "uploaded-file-saver";
 import path from "path";
 import { userController } from "./5-controllers/user-controller";
 import { ragController } from "./5-controllers/rag-controller";
+import { employeeController } from "./5-controllers/employee-controller";
 import cors from "cors";
 import { cyber } from "./2-utils/cyber";
 import { securityMiddleware } from "./6-middleware/security-middleware";
@@ -24,7 +26,7 @@ class App {
         server.use(expressRateLimit({
             windowMs: 1000, // Time window.
             limit: 5, // How many requests are permitted in this time window.
-            skip: (request: Request) => request.path.startsWith("/api/products/images/") // When to skip the rate-limit.
+            skip: (request: Request) => request.path.startsWith("/api/products/images/") || request.path.startsWith("/api/employees/images/") // When to skip the rate-limit.
         }));
 
         // Tell express that request.body is a JSON format: 
@@ -43,6 +45,7 @@ class App {
 
         // Connect controllers: 
         server.use(productController.router);
+        server.use(employeeController.router);
         server.use(userController.router);
         server.use(ragController.router);
 
