@@ -24,19 +24,39 @@ Features:
 
 ## Run locally
 
-### 1. Start MySQL
+### 1. Docker Backend + MySQL
+
+Docker Compose currently runs only MySQL and the backend API. The frontend is not Dockerized yet.
+
+```bash
+docker compose up --build
+```
+
+- Backend API: `http://localhost:4000`
+- MySQL from host tools: `localhost:3307`
+- MySQL inside Docker network: `mysql:3306`
+
+Run the frontend locally with Vite:
+
+```bash
+cd Frontend
+npm install
+npm run dev
+```
+
+### 2. Start Only MySQL
 
 The real Northwind database dump is committed at `Database/MySQL/northwind.sql`.
 Docker Compose mounts `Database/MySQL` into `/docker-entrypoint-initdb.d`, so MySQL imports the dump automatically the first time the database volume is created.
 
 ```bash
-docker compose up -d
+docker compose up -d mysql
 ```
 
 The local MySQL service uses:
 
 - Host: `localhost`
-- Port: `3306`
+- Port: `3307` on the host, mapped to `3306` inside the container
 - Database: `northwind`
 - User: `northwind_user`
 - Password: `northwind_password`
@@ -48,7 +68,7 @@ docker compose down -v
 docker compose up -d
 ```
 
-### 2. Local Backend Environment
+### 3. Local Backend Environment
 
 `Backend/.env.example` is only a template. Create a real local `Backend/.env` file and never commit it:
 
@@ -58,8 +78,8 @@ copy .env.example .env
 notepad .env
 ```
 
-When using the Docker Compose MySQL service, keep `MYSQL_USER=northwind_user` and `MYSQL_PASSWORD=northwind_password` in `Backend/.env`.
-If you use local MySQL Workbench/root instead, edit `Backend/.env` to use `MYSQL_USER=root` and `MYSQL_PASSWORD=<your local MySQL password>`.
+When using the Docker Compose MySQL service, keep `MYSQL_USER=northwind_user`, `MYSQL_PASSWORD=northwind_password`, and `MYSQL_PORT=3307` in `Backend/.env`.
+If you use local MySQL Workbench/root instead, edit `Backend/.env` to use `MYSQL_USER=root`, `MYSQL_PASSWORD=<your local MySQL password>`, and usually `MYSQL_PORT=3306`.
 After creating or editing `Backend/.env`, restart the backend with `npm start`.
 
 Required database variables are read by `Backend/src/2-utils/dal.ts` through `Backend/src/2-utils/app-config.ts`:
@@ -72,7 +92,7 @@ Required database variables are read by `Backend/src/2-utils/dal.ts` through `Ba
 
 `OPENAI_API_KEY` is only needed for RAG/OpenAI requests. Without it, the backend returns a controlled error for the RAG endpoint.
 
-### 3. Run the backend
+### 4. Run the backend with npm
 
 ```bash
 cd Backend
@@ -82,7 +102,7 @@ npm start
 
 Start the backend from the `Backend` folder so local tooling resolves paths consistently.
 
-### 4. Run the frontend
+### 5. Run the frontend
 
 ```bash
 cd Frontend
