@@ -1,0 +1,23 @@
+services:
+  mysql:
+    image: mysql:8
+    container_name: northwind-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: northwind
+      MYSQL_USER: northwind_user
+      MYSQL_PASSWORD: northwind_password
+      MYSQL_ROOT_PASSWORD: northwind_root_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-volume:/var/lib/mysql
+      - ./Database/MySQL:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pnorthwind_root_password"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  mysql-volume:

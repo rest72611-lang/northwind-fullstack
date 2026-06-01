@@ -9,7 +9,8 @@ class DAL {
         host: appConfig.mysqlHost, // The computer name or IP address where the database is hosted. "localhost" = "127.0.0.1" = current computer.
         user: appConfig.mysqlUser, // Database user.
         password: appConfig.mysqlPassword, // Database password.
-        database: appConfig.mysqlDatabase // Database name.
+        database: appConfig.mysqlDatabase, // Database name.
+        port: appConfig.mysqlPort // Database port.
     };
 
     // Database connection:

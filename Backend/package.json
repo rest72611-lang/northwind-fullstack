@@ -3,7 +3,8 @@
     "version": "1.0.0",
     "description": "",
     "scripts": {
-        "start": "nodemon --quiet --exec ts-node src/app.ts"
+        "start": "nodemon --quiet --exec ts-node src/app.ts",
+        "build": "tsc"
     },
     "keywords": [],
     "author": "",
@@ -19,6 +20,9 @@
         "typescript": "^5.9.3"
     },
     "dependencies": {
+        "@llamaindex/openai": "^0.4.22",
+        "@llamaindex/readers": "^3.1.21",
+        "@modelcontextprotocol/sdk": "^1.29.0",
         "axios": "^1.13.5",
         "cors": "^2.8.6",
         "dotenv": "^17.2.4",
@@ -27,8 +31,10 @@
         "express-rate-limit": "^8.2.1",
         "joi": "^18.0.2",
         "jsonwebtoken": "^9.0.3",
+        "llamaindex": "^0.12.1",
         "mysql2": "^3.16.2",
         "striptags": "^3.2.0",
-        "uploaded-file-saver": "^1.0.1"
+        "uploaded-file-saver": "^1.0.1",
+        "zod": "^4.4.3"
     }
 }
