@@ -6,6 +6,8 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
+ARG VITE_API_BASE_URL=http://localhost:4000/api
+ENV VITE_API_BASE_URL=$VITE_API_BASE_URL
 RUN npm run build
 
 EXPOSE 5173

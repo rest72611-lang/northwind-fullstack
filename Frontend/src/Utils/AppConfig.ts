@@ -1,11 +1,13 @@
 class AppConfig {
 
-	public readonly productsUrl = "http://localhost:4000/api/products/";
-    public readonly employeesUrl = "http://localhost:4000/api/employees/";
-    public readonly registerUrl = "http://localhost:4000/api/register/";
-    public readonly loginUrl = "http://localhost:4000/api/login/";
-    public readonly usersUrl = "http://localhost:4000/api/users/";
-    public readonly ragUrl = "http://localhost:4000/api/rag";
+    private readonly apiBaseUrl = import.meta.env.VITE_API_BASE_URL || "http://localhost:4000/api";
+
+	public readonly productsUrl = `${this.apiBaseUrl}/products/`;
+    public readonly employeesUrl = `${this.apiBaseUrl}/employees/`;
+    public readonly registerUrl = `${this.apiBaseUrl}/register/`;
+    public readonly loginUrl = `${this.apiBaseUrl}/login/`;
+    public readonly usersUrl = `${this.apiBaseUrl}/users/`;
+    public readonly ragUrl = `${this.apiBaseUrl}/rag`;
 
     public readonly recaptchaSiteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 }

@@ -33,9 +33,12 @@ docker compose up --build
 ```
 
 - Frontend: `http://localhost:5173`
-- Backend API: `http://localhost:4000`
+- Backend API: `http://localhost:4001`
+- Backend container port: `4000`
 - MySQL from host tools: `localhost:3307`
 - MySQL inside Docker network: `mysql:3306`
+
+Docker exposes the backend on host port `4001` to avoid conflicts with a local npm backend on `4000`.
 
 Local npm development still works:
 
@@ -47,6 +50,8 @@ cd Frontend
 npm install
 npm run dev
 ```
+
+The local npm backend still uses `http://localhost:4000`.
 
 ### 2. Start Only MySQL
 
