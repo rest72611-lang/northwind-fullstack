@@ -22,6 +22,9 @@ class App {
         // Create express server:
         const server = express();
 
+        // Enable CORS for any client:
+        server.use(cors());
+
         // Prevent DoS attack: 
         server.use(expressRateLimit({
             windowMs: 1000, // Time window.
@@ -31,9 +34,6 @@ class App {
 
         // Tell express that request.body is a JSON format: 
         server.use(express.json());
-
-        // Enable CORS for any client: 
-        server.use(cors());
 
         // Image config:
         server.use(expressFileUpload());
