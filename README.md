@@ -24,21 +24,25 @@ Features:
 
 ## Run locally
 
-### 1. Docker Backend + MySQL
+### 1. Full Docker Stack
 
-Docker Compose currently runs only MySQL and the backend API. The frontend is not Dockerized yet.
+Docker Compose runs MySQL, the backend API, and the React/Vite frontend:
 
 ```bash
 docker compose up --build
 ```
 
+- Frontend: `http://localhost:5173`
 - Backend API: `http://localhost:4000`
 - MySQL from host tools: `localhost:3307`
 - MySQL inside Docker network: `mysql:3306`
 
-Run the frontend locally with Vite:
+Local npm development still works:
 
 ```bash
+cd Backend
+npm start
+
 cd Frontend
 npm install
 npm run dev

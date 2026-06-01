@@ -14,10 +14,11 @@ services:
       - mysql-volume:/var/lib/mysql
       - ./Database/MySQL:/docker-entrypoint-initdb.d
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pnorthwind_root_password"]
+      test: ["CMD-SHELL", "mysql -h localhost -u root -pnorthwind_root_password northwind -e \"SELECT 1 FROM products LIMIT 1;\""]
       interval: 10s
       timeout: 5s
       retries: 10
+      start_period: 30s
 
   backend:
     build:
@@ -42,6 +43,17 @@ services:
       OPENAI_API_KEY: ""
     ports:
       - "4000:4000"
+
+  frontend:
+    build:
+      context: ./Frontend
+    container_name: northwind-frontend
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_started
+    ports:
+      - "5173:5173"
 
 volumes:
   mysql-volume:
