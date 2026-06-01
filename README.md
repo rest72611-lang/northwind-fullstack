@@ -48,17 +48,19 @@ docker compose down -v
 docker compose up -d
 ```
 
-### 2. Environment setup
+### 2. Local Backend Environment
 
 `Backend/.env.example` is only a template. Create a real local `Backend/.env` file and never commit it:
 
 ```bat
 cd Backend
 copy .env.example .env
+notepad .env
 ```
 
 When using the Docker Compose MySQL service, keep `MYSQL_USER=northwind_user` and `MYSQL_PASSWORD=northwind_password` in `Backend/.env`.
 If you use local MySQL Workbench/root instead, edit `Backend/.env` to use `MYSQL_USER=root` and `MYSQL_PASSWORD=<your local MySQL password>`.
+After creating or editing `Backend/.env`, restart the backend with `npm start`.
 
 Required database variables are read by `Backend/src/2-utils/dal.ts` through `Backend/src/2-utils/app-config.ts`:
 
