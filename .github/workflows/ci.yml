@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - feature/rag-mcp-integration
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install frontend dependencies
+        working-directory: ./Frontend
+        run: npm ci
+
+      - name: Build frontend
+        working-directory: ./Frontend
+        run: npm run build
+
+      - name: Install backend dependencies
+        working-directory: ./Backend
+        run: npm ci
+
+      - name: Build backend
+        working-directory: ./Backend
+        run: npm run build
+
+      - name: Validate Docker Compose config
+        run: docker compose config
+
+      - name: Build Docker Compose services
+        run: docker compose build
